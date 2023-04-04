@@ -2,6 +2,7 @@
 // Inclusion du fichier de configuration de la base de données
 include('config.php');
 
+
 // Vérification si les données ont été soumises
 if (isset($_POST['username']) && isset($_POST['password'])) {
   // Récupération des données soumises dans le formulaire
