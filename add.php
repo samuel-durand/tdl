@@ -1,26 +1,36 @@
 <?php
     include('config.php');
 
-if (isset($_POST['title']) && isset($_POST['description'])) {
+// Vérifier si le formulaire a été soumis
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['username'])) {
+        // Rediriger l'utilisateur vers la page de connexion
+        header('Location: login.php');
+        exit;
+    }
+
+    // Récupérer l'ID de l'utilisateur connecté
+    $user_id = $_SESSION['username'];
+
+    // Récupérer les données du formulaire
     $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
     $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
-  
-    // Récupérer l'ID de l'utilisateur connecté à partir de la variable de session
-    $user_id = $_SESSION['user_id'];
-  
-    // Requête d'insertion avec jointure INNER JOIN sur la table "users"
-    $stmt = $pdo->prepare('INSERT INTO tasks (title, description, user_id) VALUES (:title, :description, :user_id)');
+
+
+
+    // Préparer la requête d'insertion
+    $stmt = $pdo->prepare('INSERT INTO tasks (user_id, title, description) VALUES (:user_id, :title, :description)');
+
+    // Lier les valeurs aux paramètres de la requête
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+    // Exécuter la requête
     $stmt->execute();
-  
-    $task_id = $pdo->lastInsertId(); // Récupérer l'ID de la tâche insérée
-    $stmt_task = $pdo->prepare('SELECT * FROM tasks WHERE id = :id');
-    $stmt_task->bindParam(':id', $task_id, PDO::PARAM_INT);
-    $stmt_task->execute();
-    $task = $stmt_task->fetch();
-  
-    var_dump($task); // Afficher les informations sur la tâche ajoutée
+
+    // Afficher un message de confirmation
+    echo "La tâche a été ajoutée avec succès.";
 }
 ?> 

@@ -1,7 +1,8 @@
 <?php
 // Inclusion du fichier de configuration de la base de données
 include('config.php');
-include('user.php');
+
+session_start();
 
 
 
@@ -14,35 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Récupérer l'ID de l'utilisateur connecté
-    $user_id = $_SESSION['username'];
-
-    // Récupérer les données du formulaire
-    $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
-    $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
-
-
-
-    // Préparer la requête d'insertion
-    $stmt = $pdo->prepare('INSERT INTO tasks (user_id, title, description) VALUES (:user_id, :title, :description)');
-
-    // Lier les valeurs aux paramètres de la requête
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-    $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-
-    // Exécuter la requête
-    $stmt->execute();
-
-    // Afficher un message de confirmation
-    echo "La tâche a été ajoutée avec succès.";
 }
 
 // Récupérer les tâches de la base de données et les afficher dans un tableau
 $stmt = $pdo->query('SELECT * FROM tasks ORDER BY id DESC');
 $tasks = $stmt->fetchAll();
-?>
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,26 +31,14 @@ $tasks = $stmt->fetchAll();
 <body>
     <h1>Liste des tâches</h1>
 
-    <?php if (isset($error)) { ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php } ?>
-
-
-    <form method="post">
-        <label for="title">Titre :</label>
-        <input type="text" id="title" name="title"><br>
-        <label for="description">Description :</label>
-        <textarea id="description" name="description"></textarea><br>
-        <button type="submit">Ajouter la tâche</button>
-    </form>
-
-    <?php if (!empty($tasks)) { ?>
+    <?php if (count($tasks) > 0) { ?>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Description</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,6 +47,16 @@ $tasks = $stmt->fetchAll();
                         <td><?php echo $task['id']; ?></td>
                         <td><?php echo $task['title']; ?></td>
                         <td><?php echo $task['description']; ?></td>
+                        <td>
+                            <form method="post" id="update">
+                                <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                                <input type="text" name="title" value="<?php echo $task['title']; ?>">
+                                <textarea name="description"><?php echo $task['description']; ?></textarea>
+                                <button type="submit">Modifier</button>
+                            </form>
+                            <script src="update.js"></script>
+
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -87,6 +64,9 @@ $tasks = $stmt->fetchAll();
     <?php } else { ?>
         <p>Aucune tâche n'a été trouvée.</p>
     <?php } ?>
+
+
 </body>
 </html>
+
 
