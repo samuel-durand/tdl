@@ -6,7 +6,7 @@
     const formData = new FormData(event.target);
   
     // Envoi de la requête
-    fetch('add.php', {
+    fetch('delete.php', {
       method: 'POST',
       body: formData
     })
