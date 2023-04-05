@@ -119,7 +119,7 @@ if (count($tasks) > 0) {
                         <td class="border border-gray-400 px-4 py-2 text-center"><?php echo $task['id']; ?></td>
                         <td class="border border-gray-400 px-4 py-2"><?php echo $task['title']; ?></td>
                         <td class="border border-gray-400 px-4 py-2"><?php echo $task['description']; ?></td>
-                        <td class="border border-gray-400 px-4 py-2 text-center"><?php echo $task['date']; ?></td>
+                        <td class="border border-gray-400 px-4 py-2 text-center"><?php echo $task['date_end']; ?></td>
                         <td class="border border-gray-400 px-4 py-2 text-center">Oui</td>
                         <td class="border border-gray-400 px-4 py-2 text-center">
                             <form method="post" id="delete"<?php echo $task['id']; ?>">
