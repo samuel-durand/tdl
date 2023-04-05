@@ -1,4 +1,8 @@
 <?php
+
+
+
+
 // Démarrer la session
 session_start();
 
@@ -6,16 +10,21 @@ include('config.php');
 
 
 
-
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Récupérer les données du formulaire
-    $user_id = 1; // Remplacer cette valeur par l'ID de l'utilisateur connecté
     $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
     $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
     $complete = isset($_POST['complete']) ? 1 : 0;
 
     // Se connecter à la base de données
+
+    // Récupérer l'ID de l'utilisateur connecté
+    $stmt = $pdo->prepare('SELECT id FROM users WHERE username = :username');
+    $stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user_id = $user['id'];
 
     // Préparer la requête d'insertion
     $stmt = $pdo->prepare('INSERT INTO tasks (user_id, title, description, complete) VALUES (:user_id, :title, :description, :complete)');

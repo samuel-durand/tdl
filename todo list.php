@@ -3,32 +3,21 @@
 include('config.php');
 session_start();
 
-
-
-// Vérifier si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['username'])) {
-        // Rediriger l'utilisateur vers la page de connexion
-        header('Location: login.php');
-        exit;
-    }
-
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['username'])) {
+    // Rediriger l'utilisateur vers la page de connexion
+    header('Location: login.php');
+    exit;
 }
 
-// Récupérer les tâches de la base de données et les afficher dans un tableau
-$stmt = $pdo->query('SELECT * FROM tasks ORDER BY id DESC');
+// Récupérer les tâches créées par l'utilisateur connecté
+$username = $_SESSION['username'];
+$stmt = $pdo->prepare('SELECT tasks.* FROM tasks INNER JOIN users ON tasks.user_id = users.id WHERE users.username = :username ORDER BY tasks.id DESC');
+$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+$stmt->execute();
 $tasks = $stmt->fetchAll();
-
-
-$stmt = $pdo->query('SELECT * FROM `tasks` ORDER BY `tasks`.`complete` DESC
-');
-$completed_tasks = $stmt->fetchAll();
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +25,8 @@ $completed_tasks = $stmt->fetchAll();
     <title>Liste des tâches</title>
 </head>
 <body>
+
+<?php include('header.php') ?>
 
     <h1>ajouter une tache</h1>
     <form method="post" id="add">
@@ -121,6 +112,7 @@ if (count($tasks) > 0) {
                 if ($task['complete']) { ?>
                     <tr>
                         <td><?php echo $task['id']; ?></td>
+                        <td class="completed"><?php echo $task['title']; ?></td>
                         <td class="completed"><?php echo $task['title']; ?></td>
                         <td class="completed"><?php echo $task['description']; ?></td>
                         <td class="completed"><?php echo $task['complete']; ?></td>
