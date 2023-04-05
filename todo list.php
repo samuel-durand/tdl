@@ -53,6 +53,7 @@ if (count($tasks) > 0) {
             <th>ID</th>
             <th>Titre</th>
             <th>Description</th>
+            <th>heure d'ajout</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -65,6 +66,7 @@ if (count($tasks) > 0) {
                 <td><?php echo $task['id']; ?></td>
                 <td><?php echo $task['title']; ?></td>
                 <td><?php echo $task['description']; ?></td>
+                <td><?php echo $task['date']; ?></td>
                 <td>
                     <form method="post" id="update">
                         <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
@@ -103,6 +105,7 @@ if (count($tasks) > 0) {
                 <th>ID</th>
                 <th>Titre</th>
                 <th>Description</th>
+                <th>heure d'ajout</th>
                 <th>Terminée</th>
                 <th>Action</th>
             </tr>
@@ -115,6 +118,8 @@ if (count($tasks) > 0) {
                         <td class="completed"><?php echo $task['title']; ?></td>
                         <td class="completed"><?php echo $task['title']; ?></td>
                         <td class="completed"><?php echo $task['description']; ?></td>
+                        <td><?php echo $task['date']; ?></td>
+
                         <td class="completed"><?php echo $task['complete']; ?></td>
                         <td>
                             <form method="post" id="delete"<?php echo $task['id']; ?>">

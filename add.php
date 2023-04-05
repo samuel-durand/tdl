@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
     $complete = isset($_POST['complete']) ? 1 : 0;
 
-    // Se connecter à la base de données
 
     // Récupérer l'ID de l'utilisateur connecté
     $stmt = $pdo->prepare('SELECT id FROM users WHERE username = :username');
