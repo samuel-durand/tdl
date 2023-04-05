@@ -1,12 +1,12 @@
   // Sélection de l'élément du formulaire et ajout d'un écouteur d'événements sur la soumission
-  document.querySelector('#delete').addEventListener('submit', (event) => {
+  document.querySelector('#complete').addEventListener('submit', (event) => {
     event.preventDefault(); // Empêche le rechargement de la page
   
     // Récupération des données du formulaire
     const formData = new FormData(event.target);
   
     // Envoi de la requête
-    fetch('delete.php', {
+    fetch('complete.php', {
       method: 'POST',
       body: formData
     })
