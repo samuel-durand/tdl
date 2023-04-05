@@ -15,7 +15,7 @@
                 <li><a href="login.php">login</a></li>
                 <?php else:?>
                 <li><a href="todo list.php">todo list</a></li>
-                <li><a href="logout.php">Deconnion</a></li>
+                <li><a href="logout.php">Deconnexion</a></li>
                 <?php endif; ?>
             </ul>
         </nav>

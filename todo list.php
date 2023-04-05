@@ -62,7 +62,7 @@ $tasks = $stmt->fetchAll();
 <?php 
 if (count($tasks) > 0) { 
 ?>
-<ul class="list-disc pl-8">
+<ul class="pl-8">
     <?php 
     foreach ($tasks as $task) { 
         if (!$task['complete']) { // Si la tâche n'est pas terminée, on l'affiche
@@ -107,7 +107,7 @@ if (count($tasks) > 0) {
                 <th class="border border-gray-400 px-4 py-2 text-center">ID</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Titre</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Description</th>
-                <th class="border border-gray-400 px-4 py-2 text-center">Heure d'ajout</th>
+                <th class="border border-gray-400 px-4 py-2 text-center">Heure terminée</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Terminée</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Action</th>
             </tr>
@@ -122,7 +122,7 @@ if (count($tasks) > 0) {
                         <td class="border border-gray-400 px-4 py-2 text-center"><?php echo $task['date']; ?></td>
                         <td class="border border-gray-400 px-4 py-2 text-center">Oui</td>
                         <td class="border border-gray-400 px-4 py-2 text-center">
-                            <form method="post" id="delete<?php echo $task['id']; ?>">
+                            <form method="post" id="delete"<?php echo $task['id']; ?>">
                                 <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
                                 <button type="submit" class="bg-red-500 text-white font-bold py-2 px-4 rounded">Supprimer</button>
                             </form>
