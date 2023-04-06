@@ -43,9 +43,58 @@ $tasks = $stmt->fetchAll();
 <body>
 
 <?php include('header.php') ?>
+
 <h3 id="welcome" class="text-light"><?php echo $bienvenue ?></h3>
-<div>
+
+
+<h1 class="text-3xl mb-5">Liste des tâches</h1>
+<div class="tache">
+    <?php 
+    if (count($tasks) > 0) { 
+    ?>
+    <ul class="">
+        <?php 
+        foreach ($tasks as $task) { 
+            if (!$task['complete']) { // Si la tâche n'est pas terminée, on l'affiche
+        ?>
+        <li class="bg-white rounded-lg shadow-lg p-6">
+            <form method="post" id="update">
+                <label for="">Titre :</label>
+                <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                <input type="text" name="title" value="<?php echo $task['title']; ?>" class="w-full border rounded px-2 py-1 mb-2">
+                <label for="">description :</label>
+                <textarea name="description" class="w-full border rounded px-2 py-1 mb-2"><?php echo $task['description']; ?></textarea>
+                <div class="flex justify-between items-center">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded py-1 px-4">Modifier</button>
+                </div>
+                <script src="./update.js"></script>
+            </form>
+
+            <form method="post" id="complete">
+                <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold rounded py-1 px-4 mt-2">Terminer la tâche</button>
+
+                <div class="flex justify-center">
+                    <p class="text-gray-600"><?php echo $task['date']; ?></p>
+                </div>
+            </form>
+            <script src="complete.js"></script>
+        </li>
+        <?php 
+            }
+        } 
+        ?>
+    </ul>
+    <?php 
+    } else {
+        echo "Aucune tâche trouvée.";
+    }
+    ?>
+</div>
+
   <h1 id="add-list" class=" font-bold mb-4">Ajouter une liste</h1>
+
+<div class="container">
   <form method="post" id="add" id="add-box" class="bg-white rounded-lg shadow-lg p-6">
     <div class="mb-4">
       <label for="title" class="block font-bold mb-2">Titre :</label>
@@ -63,47 +112,8 @@ $tasks = $stmt->fetchAll();
   </form>
 </div>
 
-<div class="flex flex-col justify-center items-center ">
-    <h1 class="text-3xl mb-5">Liste des tâches</h1>
-    <?php 
-    if (count($tasks) > 0) { 
-    ?>
-    <ul class="">
-        <?php 
-        foreach ($tasks as $task) { 
-            if (!$task['complete']) { // Si la tâche n'est pas terminée, on l'affiche
-        ?>
-        <li class="bg-white rounded-lg shadow-lg p-6">
-            <form method="post" id="update">
-                <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
-                <input type="text" name="title" value="<?php echo $task['title']; ?>" class="w-full border rounded px-2 py-1 mb-2">
-                <textarea name="description" class="w-full border rounded px-2 py-1 mb-2"><?php echo $task['description']; ?></textarea>
-                <div class="flex justify-between items-center">
-                    <p class="text-gray-600"><?php echo $task['date']; ?></p>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded py-1 px-4">Modifier</button>
-                </div>
-                <script src="./update.js"></script>
-            </form>
 
-            <form method="post" id="complete">
-                <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
-                <div class="flex justify-center">
-                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold rounded py-1 px-4 mt-2">Terminer la tâche</button>
-                </div>
-                <script src="complete.js"></script>
-            </form>
-        </li>
-        <?php 
-            }
-        } 
-        ?>
-    </ul>
-    <?php 
-    } else {
-        echo "Aucune tâche trouvée.";
-    }
-    ?>
-</div>
+
 
 
 <h2 class="text-xl font-bold mb-4">Tâches terminées</h2>
@@ -145,10 +155,5 @@ $tasks = $stmt->fetchAll();
 <?php } else { ?>
     <p>Aucune tâche terminée n'a été trouvée.</p>
 <?php } ?>
-
 </body>
 </html>
-
-
-
-

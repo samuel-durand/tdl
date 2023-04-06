@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #21264a;
+   /* background-color: #21264a;*/
 
 }
 
@@ -25,29 +25,52 @@ header nav ul li{
     display: inline;
 }
 
-#welcome{
+
+h1 {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
 }
 
-#add-list{
+.tache {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    margin: 10px;
 }
 
-#add-box {
+
+
+.tache form textarea {
+    display: flex;
+    flex-direction: column;
+}
+
+
+ .tache ul {
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.tache li {
+    flex-basis: calc(50% - 10px); /* Pour afficher 2 éléments par ligne */
+    margin: 5px; /* Espacement entre les éléments */
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
     width: 60%;
 
+}
+
+.container-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
