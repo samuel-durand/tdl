@@ -21,12 +21,33 @@ $bienvenue = "bonsoir et bienvenue " .
 $_SESSION['username'];
 
 
+
 // Récupérer les tâches créées par l'utilisateur connecté
 $username = $_SESSION['username'];
-$stmt = $pdo->prepare('SELECT tasks.* FROM tasks INNER JOIN users ON tasks.user_id = users.id WHERE users.username = :username ORDER BY tasks.id ASC');
+$stmt = $pdo->prepare('SELECT tasks.*, users.username FROM tasks INNER JOIN users ON tasks.user_id = users.id WHERE users.username = :username ORDER BY tasks.id ASC');
 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 $stmt->execute();
 $tasks = $stmt->fetchAll();
+
+// Séparer les tâches en cours et terminées
+$in_progress_tasks = array();
+$completed_tasks = array();
+foreach ($tasks as $task) {
+    if ($task['complete']) {
+        $completed_tasks[] = $task;
+    } else {
+        $in_progress_tasks[] = $task;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 ?>
 
@@ -71,7 +92,7 @@ $tasks = $stmt->fetchAll();
 </div>
 
 
-<h1 class="text-3xl mb-5">Liste des tâches</h1>
+<h1 id="h2">Liste des tâches</h1>
 <div class="tache">
     <?php 
     if (count($tasks) > 0) { 
