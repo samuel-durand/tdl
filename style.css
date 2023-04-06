@@ -6,13 +6,17 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 0;
    /* background-color: #21264a;*/
 
 }
 
 header nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: end;
     height: 80px;
@@ -23,6 +27,16 @@ header nav {
 
 header nav ul li{
     display: inline;
+}
+
+
+#welcome {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    font-size: 20px;
 }
 
 
@@ -59,6 +73,14 @@ h1 {
     margin: 5px; /* Espacement entre les éléments */
 }
 
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 form {
     display: flex;
     justify-content: center;
@@ -68,9 +90,87 @@ form {
 
 }
 
-.container-add {
+.container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+}
+
+
+/*table*/
+#h2{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin: 15px;
+}
+
+
+table {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+
+}
+
+table td {
+    border: 1px solid #4404aa;
+
+}
+
+
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4404aa;
+    color: white;
+}
+
+#button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        width: 100%;
+   
+}
+
+
+footer ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    text-align: center;
+}
+
+footer ul li {
+    margin: 0 10px;
 }
