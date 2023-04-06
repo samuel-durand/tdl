@@ -15,7 +15,9 @@ include('config.php');
 
 </head>
 <body>
+    <?php include('header.php') ?>
     <h1>Connexion</h1>
+
     <main>
     <form method="post" id="mon-formulaire">
         <label for="username">Login:</label>
@@ -27,8 +29,9 @@ include('config.php');
         <button type="submit">se connecter</button>
 </form>
 </main>
-<script src="./login.js"></script>
+<script src="login.js"></script>
 
+<?php include('footer.php') ?>
 
 
 

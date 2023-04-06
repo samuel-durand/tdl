@@ -14,7 +14,7 @@ include('config.php');
     <title>inscription</title>
 </head>
 <body>
-
+<?php include('header.php') ?>
 <h1>inscription</h1>
 <main>
 <form id="mon-formulaire-register" method="POST">
@@ -36,6 +36,7 @@ include('config.php');
 </script>
 
 
-    
+<?php include('footer.php') ?>
+
 </body>
 </html>

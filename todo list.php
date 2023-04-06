@@ -41,14 +41,6 @@ foreach ($tasks as $task) {
 }
 
 
-
-
-
-
-
-
-
-
 ?>
 
 <!doctype html>
@@ -76,7 +68,7 @@ foreach ($tasks as $task) {
 <div class="container">
   <form method="post" id="add" id="add-box" class="bg-white rounded-lg shadow-lg p-6">
     <div class="mb-4">
-      <label for="title" class="block font-bold mb-2">Titre :</label>
+      <label for="title" id="title" class="block font-bold mb-2">Titre :</label>
       <input type="text" name="title" id="title" class="w-full border rounded py-2 px-3" required>
     </div>
 
@@ -136,9 +128,6 @@ foreach ($tasks as $task) {
     }
     ?>
 </div>
-
-
-
 
 
 
