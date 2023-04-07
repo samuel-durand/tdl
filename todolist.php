@@ -54,7 +54,10 @@ foreach ($tasks as $task) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css">
 </head>
 
+<html> 
 <body>
+        
+
 
 <?php include('header.php') ?>
 
@@ -170,3 +173,8 @@ foreach ($tasks as $task) {
 <?php } else { ?>
     <p id="p">Aucune tâche terminée n'a été trouvée.</p>
 <?php } ?>
+
+<?php include('footer.php') ?>
+
+</html>
+</body>
