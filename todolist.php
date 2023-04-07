@@ -1,7 +1,7 @@
 <?php
-
 // Inclusion du fichier de configuration de la base de données
 include('config.php');
+session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['username'])) {
@@ -10,7 +10,8 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-date_default_timezone_get();
+date_default_timezone_set("Europe/Paris");
+
 
 if (date("H") < 18)
 $bienvenue = "bonjour et bienvenue " .
@@ -78,9 +79,8 @@ foreach ($tasks as $task) {
 
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ajouter la liste</button>
 
+    <script src="./add.js"></script>
   </form>
-  <script src="./add.js"></script>
-
 </div>
 
 
@@ -170,7 +170,3 @@ foreach ($tasks as $task) {
 <?php } else { ?>
     <p id="p">Aucune tâche terminée n'a été trouvée.</p>
 <?php } ?>
-
-<?php include('footer.php') ?>
-</body>
-</html>
