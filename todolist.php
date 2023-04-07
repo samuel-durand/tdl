@@ -1,7 +1,7 @@
 <?php
+
 // Inclusion du fichier de configuration de la base de données
 include('config.php');
-session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['username'])) {
@@ -10,8 +10,7 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-date_default_timezone_set("Europe/Paris");
-
+date_default_timezone_get();
 
 if (date("H") < 18)
 $bienvenue = "bonjour et bienvenue " .
@@ -79,8 +78,9 @@ foreach ($tasks as $task) {
 
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ajouter la liste</button>
 
-    <script src="./add.js"></script>
   </form>
+  <script src="./add.js"></script>
+
 </div>
 
 
@@ -139,7 +139,6 @@ foreach ($tasks as $task) {
                 <th class="border border-gray-400 px-4 py-2 text-center">ID</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Titre</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Description</th>
-                <th class="border border-gray-400 px-4 py-2 text-center">Heure ajouter</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Heure terminée</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Terminée</th>
                 <th class="border border-gray-400 px-4 py-2 text-center">Action</th>
@@ -152,7 +151,6 @@ foreach ($tasks as $task) {
                         <td class=" px-4 py-2 text-center"><?php echo $task['id']; ?></td>
                         <td class=" px-4 py-2"><?php echo $task['title']; ?></td>
                         <td class=" px-4 py-2"><?php echo $task['description']; ?></td>
-                        <td class=" px-4 py-2 text-center"><?php echo $task['date']; ?></td>
                         <td class=" px-4 py-2 text-center"><?php echo $task['date_end']; ?></td>
                         <td class=" px-4 py-2 text-center">Oui</td>
                         <td class=" px-4 py-2 text-center">

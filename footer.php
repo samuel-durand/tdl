@@ -4,7 +4,7 @@
         <li><a href="index.php">accueil</a></li>
         <li><a href="register.php">S'inscrire</a></li>
         <li><a href="login.php">login</a></li>
-        <li><a href="todo list.php">todo list</a></li>
+        <li><a href="test.php">todo list</a></li>
     </ul>
 </footer>
 

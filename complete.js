@@ -12,7 +12,7 @@
     })
     .then(response => {
       // Redirection vers la page désirée
-      window.location.replace("todo list.php");
+      window.location.replace("todolist.php");
     })
     .catch(error => {
       console.error(error);

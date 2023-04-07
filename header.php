@@ -4,7 +4,7 @@
             <ul>
                 <li><a href="index.php">accueil</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
-                    <li><a href="todo list.php">todo list</a></li>
+                    <li><a href="test.php">todo list</a></li>
                 <li><a href="logout.php">Deconnexion</a></li>
 
                 <?php else:?>

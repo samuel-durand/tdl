@@ -1,10 +1,11 @@
 <?php 
 
+session_start();
 
 // Paramètres de connexion à la base de données
-$dsn = 'mysql:host=localhost;dbname=todo list';
-$username = 'root';
-$password = '';
+$dsn = 'mysql:host=localhost;dbname=samuel-durand_tdl';
+$username = 'samuel';
+$password = 'Zgcl059%2';
 
 // Connexion à la base de données en utilisant PDO
 try {
