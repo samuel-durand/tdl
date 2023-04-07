@@ -14,7 +14,7 @@
 
     <p id="welcome2">Bienvenue sur mon projet de Todo List !
 
-    Cette application vous permet de créer et gérer des tâches, de les marquer comme terminées et de les supprimer. Elle vous permet également de visualiser vos tâches en cours et terminées. Nous espérons que vous apprécierez l'utilisation de notre Todo List et que cela vous aidera à mieux gérer vos tâches au quotidien</p>
+    Cette application vous permet de créer et gérer des tâches, de les marquer comme terminées et de les supprimer. Elle vous permet également de visualiser vos tâches en cours et terminées. j'éspère que vous apprécierez l'utilisation de mon Todo List et que cela vous aidera à mieux gérer vos tâches au quotidien</p>
 
 
 
